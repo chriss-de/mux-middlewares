@@ -1,7 +1,15 @@
 package middlewares
 
+import "net/http"
+
+/*  this code is under license
+
+    BSD 3-Clause "New" or "Revised" License
+
+    https://github.com/gorilla/handlers/blob/main/proxy_headers.go
+*/
+
 import (
-	"net/http"
 	"regexp"
 	"strings"
 )
