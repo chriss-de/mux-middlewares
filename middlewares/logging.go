@@ -25,6 +25,7 @@ func Logging(next http.Handler) http.Handler {
 				slog.String("method", r.Method),
 				slog.Int("status", wrw.Status()),
 				slog.String("latency", time.Since(reqStart).String()),
+				slog.Int64("size", wrw.BytesWritten()),
 				slog.String("user_agent", r.UserAgent()),
 			)
 		}()

@@ -13,7 +13,7 @@ func NewWrappedResponseWriter(w http.ResponseWriter) *WrappedResponseWriter {
 type WrappedResponseWriter struct {
 	http.ResponseWriter
 	code  int
-	bytes int
+	bytes int64
 }
 
 func (b *WrappedResponseWriter) WriteHeader(code int) {
@@ -23,7 +23,7 @@ func (b *WrappedResponseWriter) WriteHeader(code int) {
 
 func (b *WrappedResponseWriter) Write(buf []byte) (int, error) {
 	n, err := b.ResponseWriter.Write(buf)
-	b.bytes += n
+	b.bytes += int64(n)
 	return n, err
 }
 
@@ -31,7 +31,7 @@ func (b *WrappedResponseWriter) Status() int {
 	return b.code
 }
 
-func (b *WrappedResponseWriter) BytesWritten() int {
+func (b *WrappedResponseWriter) BytesWritten() int64 {
 	return b.bytes
 }
 
